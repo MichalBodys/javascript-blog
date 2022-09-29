@@ -12,8 +12,9 @@ function titleClickHandler(event) {
 		activeLink.classList.remove("active");
 	}
 
-	/* [IN PROGRESS] add class 'active' to the clicked link */
+	/* [Done] add class 'active' to the clicked link */
 
+	clickedElement.classList.add("active");
 	console.log("clickedElement:", clickedElement);
 
 	/* [DONE] remove class 'active' from all articles */
