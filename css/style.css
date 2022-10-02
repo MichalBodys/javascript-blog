@@ -1,14 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=Oswald:400,600|Sacramento|Source+Sans+Pro:300&subset=latin-ext");
 /* Variables */
 /* Global */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 body {
-  background: #fff;
+  background-image: linear-gradient(to top, #d7d2cc 0%, #304352 100%);
+  background-size: cover;
   font-family: "Source Sans Pro", sans-serif;
-  color: #444;
   font-weight: 300;
   font-size: 16px;
   line-height: 1.7;
@@ -19,16 +21,16 @@ body {
   margin: 0 auto;
 }
 
+a,
+li {
+  color: rgb(9, 40, 76);
+}
+
 .section-title {
   font-size: 22px;
   text-transform: uppercase;
   font-family: "Oswald", sans-serif;
   font-weight: 600;
-}
-.section-title span {
-  text-transform: none;
-  font-weight: 400;
-  color: #777777;
 }
 
 /* Layout */
@@ -45,12 +47,13 @@ body {
   flex: 2 0 0;
 }
 
-.sidebar, .posts {
-  background: #fff;
+.sidebar,
+.posts {
+  background: inherit;
   margin-right: 10px;
   padding: 40px;
-  border: 1px solid #444;
-  border-radius: 5px;
+  font-weight: bold;
+  color: black;
 }
 
 /* Logo */
@@ -60,6 +63,8 @@ body {
   font-size: 104px;
   line-height: 1;
   text-align: center;
+  color: #fff;
+  text-shadow: 5px 5px black;
 }
 
 /* Lists */
@@ -69,7 +74,7 @@ body {
   padding: 0;
 }
 .list .active {
-  font-weight: bold;
+  color: #fff;
 }
 
 .list-horizontal li {
@@ -98,4 +103,16 @@ body {
 }
 .post-tags p {
   margin: 0 10px 0 0;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    flex-flow: column;
+  }
+  .wrapper .post .post-title, .wrapper .post .post-author {
+    text-align: center;
+  }
+  .wrapper .sidebar {
+    text-align: center;
+  }
 }/*# sourceMappingURL=style.css.map */
