@@ -109,7 +109,8 @@ li {
   .wrapper {
     flex-flow: column;
   }
-  .wrapper .post .post-title, .wrapper .post .post-author {
+  .wrapper .post .post-title,
+.wrapper .post .post-author {
     text-align: center;
   }
   .wrapper .sidebar {

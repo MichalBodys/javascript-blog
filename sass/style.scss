@@ -128,11 +128,12 @@ li {
 @media (max-width: 768px) {
 	.wrapper {
 		flex-flow: column;
-    .post{
-      .post-title, .post-author{
-        text-align: center;
-      }
-    }
+		.post {
+			.post-title,
+			.post-author {
+				text-align: center;
+			}
+		}
 
 		.sidebar {
 			text-align: center;
