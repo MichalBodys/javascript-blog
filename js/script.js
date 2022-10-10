@@ -54,7 +54,7 @@ function generateTitleLinks(customSelector = ''){
   /* [Done]remove contents of titleList */
 
   const titleList = document.querySelector(optTitleListSelector);
-
+  titleList.innerHTML = '';
   /* for each article */
 
   const articles = document.querySelectorAll(optArticleSelector + customSelector);
@@ -103,7 +103,7 @@ function generateTags(){
   for(let article of articles){
 
     /* find tags wrapper*/
-    const tagList = article.querySelector(optArticleTagsSelector);
+    const tagsWrapper = article.querySelector(optArticleTagsSelector);
 
     /* make html variable with empty string */
 
@@ -123,19 +123,19 @@ function generateTags(){
 
       /* generate HTML of the link */
 
-      const tagHTML = `<li><a href="#tag-${tag}">${tag}</a></li>`;
+      const linkHTML = `<li><a href="#tag-${tag}">${tag}</a></li>`;
 
 
       /* add generated code to html variable */
 
-      html = html +  tagHTML;
+      html = html + ' ' + linkHTML;
 
       /* END LOOP: for each tag */
     }
 
     /* insert HTML of all the links into the tags wrapper */
 
-    tagList.innerHTML = html;
+    tagsWrapper.innerHTML = html;
 
     /* END LOOP: for every article: */
   }
@@ -224,17 +224,17 @@ function generateAuthors(){
 
   for(let article of articles){
 
-    const authorList = article.querySelector(optArticleAuthorSelector);
+    const authorWrapper = article.querySelector(optArticleAuthorSelector);
 
     let html = '';
 
     const authorTag = article.getAttribute('data-author');
 
-    const authorHTML = `<a href="#${authorTag}">${authorTag}</a>`;
+    const linkHTML = `<a href="#${authorTag}">${authorTag}</a>`;
 
-    html = html + authorHTML;
+    html = html + linkHTML;
 
-    authorList.innerHTML = html;
+    authorWrapper.innerHTML = html;
   }
 }
 generateAuthors();
