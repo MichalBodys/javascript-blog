@@ -4,7 +4,8 @@ const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list',
-  optArticleAuthorSelector = '.post-author';
+  optArticleAuthorSelector = '.post-author',
+  optTagsListSelector = '.tags .list';
 
 function titleClickHandler(event){
   event.preventDefault();
@@ -75,7 +76,8 @@ function generateTitleLinks(customSelector = ''){
 generateTitleLinks();
 
 function generateTags(){
-
+  let allTags = [];
+  // new variable allTags with epmy array
 
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
@@ -85,7 +87,7 @@ function generateTags(){
 
     /* find tags wrapper */
     const tagsWrapper = article.querySelector(optArticleTagsSelector);
-
+    tagsWrapper.innerHTML='';
     /* make html variable with empty string */
     let html = '';
 
@@ -104,12 +106,19 @@ function generateTags(){
       /* add generated code to html variable */
       html = html + '  ' + linkHTML;
 
-    /* END LOOP: for each tag */
+      if(allTags.indexOf(linkHTML)== -1){
+        allTags.push(linkHTML);
+      }
+
+      /* END LOOP: for each tag */
     }
     /* insert HTML of all the links into the tags wrapper */
     tagsWrapper.innerHTML = html;
-  /* END LOOP: for every article: */
+    /* END LOOP: for every article: */
   }
+  const tagList = document.querySelector(optTagsListSelector);
+  tagList.innerHTML = allTags.join(' ');
+
 }
 generateTags();
 
