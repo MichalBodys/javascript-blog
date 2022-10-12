@@ -86,6 +86,7 @@ li {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
+
 	.active {
 		color: $color-light;
 	}
@@ -110,6 +111,7 @@ li {
 
 .post {
 	display: none;
+
 	&.active {
 		display: block;
 	}
@@ -121,6 +123,7 @@ li {
 
 .post-tags {
 	display: flex;
+
 	p {
 		margin: 0 10px 0 0;
 	}
@@ -129,7 +132,9 @@ li {
 @media (max-width: 768px) {
 	.wrapper {
 		flex-flow: column;
+
 		.post {
+
 			.post-title,
 			.post-author {
 				text-align: center;
@@ -140,4 +145,24 @@ li {
 			text-align: center;
 		}
 	}
+}
+
+.tag-size-1 {
+	font-size: 24px;
+}
+
+.tag-size-2 {
+	font-size: 20px;
+}
+
+.tag-size-3 {
+	font-size: 18px;
+}
+
+.tag-size-4 {
+	font-size: 16px;
+}
+
+.tag-size-5 {
+	font-size: 14px;
 }

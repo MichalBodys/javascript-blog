@@ -5,7 +5,10 @@ const optArticleSelector = '.post',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list',
   optArticleAuthorSelector = '.post-author',
-  optTagsListSelector = '.tags .list';
+  optTagsListSelector = '.list.tags',
+  optCloudClassCount = 5,
+  optCloudClassPrefix = 'tag-size-';
+
 
 function titleClickHandler(event){
   event.preventDefault();
@@ -75,8 +78,27 @@ function generateTitleLinks(customSelector = ''){
 }
 generateTitleLinks();
 
+function calculateTagsParams(tags) {
+  const params = {min: 99999, max:0};
+  for (let tag in tags) {
+    if(tags[tag] > params.max) {
+      params.max = tags[tag];
+    } else if (tags[tag] < params.min) {
+      params.min = tags[tag];
+    }
+  }
+  return params;
+}
+function calculateTagClass(count, params) {
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const classNumber = Math.floor(percentage * (optCloudClassCount - 1) + 1);
+  return optCloudClassPrefix + classNumber;
+}
+
 function generateTags(){
-  let allTags = [];
+  let allTags = {};
   // new variable allTags with epmy array
 
   /* find all articles */
@@ -106,8 +128,10 @@ function generateTags(){
       /* add generated code to html variable */
       html = html + '  ' + linkHTML;
 
-      if(allTags.indexOf(linkHTML)== -1){
-        allTags.push(linkHTML);
+      if(!allTags.hasOwnProperty(tag)){
+        allTags[tag]= 1;
+      }else{
+        allTags[tag]++;
       }
 
       /* END LOOP: for each tag */
@@ -117,8 +141,16 @@ function generateTags(){
     /* END LOOP: for every article: */
   }
   const tagList = document.querySelector(optTagsListSelector);
-  tagList.innerHTML = allTags.join(' ');
+  const tagsParams = calculateTagsParams(allTags);
+  console.log('tagsParams:', tagsParams);
+  let allTagsHTML = '';
 
+  for(let tag in allTags){
+    const tagLinkHTML = '<li class="' + calculateTagClass(allTags[tag], tagsParams) + '"><a href="#tag-' + tag + '">' + tag + '</a></li> ';
+    allTagsHTML += tagLinkHTML;
+  }
+  tagList.innerHTML = allTagsHTML;
+  console.log(tagList);
 }
 generateTags();
 
